@@ -25,7 +25,13 @@
         <!--<property name="name" value="李四"/>-->
     <!--</bean>-->
     <!--不需要设置id（设置id的目的是我们自己调用），因为只要存在实现BeanPostProcessor 类的方法，创建所有的Bean都会执行其中的那两个方法。是spring调用的。-->
-    <bean class="com.bupt.ioc.demo3.MyBeanPostProcessor"/>
+    <!---->
+    <!--<bean class="com.bupt.ioc.demo3.MyBeanPostProcessor"/>-->
+    <!--<bean id="userDao" class="com.bupt.ioc.demo3.UserDaoImpl"/>-->
 
-    <bean id="userDao" class="com.bupt.ioc.demo3.UserDaoImpl"/>
+    <!--Bean的构造方法的属性注入-->
+    <bean id="user" class="com.bupt.ioc.demo4.User">
+        <constructor-arg name="name" value="张三"/>
+        <constructor-arg name="age" value="23"/>
+    </bean>
 </beans>
