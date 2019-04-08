@@ -11,4 +11,15 @@ public class SpringDemo2 {
         bean1.say();
         classPathXmlApplicationContext.close();
     }
+
+    @Test
+    public void demo2(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        Bean2 bean1 = (Bean2)applicationContext.getBean("bean2");
+        Bean2 bean2 = (Bean2)applicationContext.getBean("bean2");
+
+        System.out.println(bean1 == bean2);
+
+    }
 }
