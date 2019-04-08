@@ -12,4 +12,13 @@ public class SpringDemo1 {
         String s = userService.sayHello("张三");
         System.out.println(s);
     }
+
+    @Test
+    public void demo2(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        UserService userService = (UserService) applicationContext.getBean("userService");
+
+        userService.eat();
+    }
 }
