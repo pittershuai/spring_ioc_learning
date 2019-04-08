@@ -2,7 +2,7 @@ package com.bupt.ioc_annotation.demo1;
 
 import org.springframework.stereotype.Repository;
 
-@Repository("userDa11o")
+@Repository("userDao")
 public class UserDao {
 
     public void save(){
