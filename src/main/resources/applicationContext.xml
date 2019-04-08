@@ -34,4 +34,10 @@
         <constructor-arg name="name" value="张三"/>
         <constructor-arg name="age" value="23"/>
     </bean>
+
+    <!--Bean的settere方法的属性注入-->
+    <bean id="person" class="com.bupt.ioc.demo4.Person">
+        <property name="name" value="张三"/>
+        <property name="age" value="32"/>
+    </bean>
 </beans>
