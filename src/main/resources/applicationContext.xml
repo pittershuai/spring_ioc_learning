@@ -7,4 +7,14 @@
         <!--设置属性，将依赖的属性设置进去，这就是依赖注入-->
         <property name="name" value="李四"></property>
     </bean>
+
+    <!--Bean的实例化的三种方式============================-->
+    <!--第一种：无参构造器的方式-->
+    <bean id="Bean1" class="com.bupt.ioc.demo2.Bean1"/>
+    <!--第二种：静态工厂的方式-->
+    <bean id="Bean2" class="com.bupt.ioc.demo2.Bean2Factory" factory-method="createBean2"/>
+    <!--第三种：实例工厂的方式-->
+    <bean id="Bean3Factory" class="com.bupt.ioc.demo2.Bean3Factory"/>
+    <bean id="Bean3" factory-bean="Bean3Factory" factory-method="createBean3"/>
+
 </beans>
