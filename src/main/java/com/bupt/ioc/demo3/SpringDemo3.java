@@ -32,4 +32,16 @@ public class SpringDemo3 {
 
         applicationContext.close();
     }
+
+    @Test
+    public void demo3(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserDao userDao = (UserDao) applicationContext.getBean("userDao");
+
+        userDao.findAll();
+        userDao.save();//在save之前做一个校验
+        userDao.update();
+        userDao.delete();
+
+    }
 }
