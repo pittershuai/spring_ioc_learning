@@ -48,6 +48,20 @@
     <!--</bean>-->
 
     <!--Bean的p命名空间的属性注入-->
-    <bean id="person" class="com.bupt.ioc.demo4.Person" p:name="xiaoming" p:age="12" p:cat-ref="cat"/>
-    <bean id="cat" class="com.bupt.ioc.demo4.Cat" p:name="tom"/>
+    <!--<bean id="person" class="com.bupt.ioc.demo4.Person" p:name="xiaoming" p:age="12" p:cat-ref="cat"/>-->
+    <!--<bean id="cat" class="com.bupt.ioc.demo4.Cat" p:name="tom"/>-->
+
+
+    <!--Bean的SpEL的属性注入==============================-->
+    <bean id="category" class="com.bupt.ioc.demo4.Category">
+        <property name="name" value="#{'服装'}"/>
+    </bean>
+
+    <bean id="productInfo" class="com.bupt.ioc.demo4.ProductInfo"/>
+
+    <bean id="product" class="com.bupt.ioc.demo4.Product">
+        <property name="name" value="#{'男装'}"/>
+        <property name="price" value="#{productInfo.calculatePrice()}"/>
+        <property name="category" value="#{category}"/>
+    </bean>
 </beans>
