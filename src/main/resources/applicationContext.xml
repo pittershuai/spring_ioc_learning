@@ -3,27 +3,27 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!--UserService的创建权交给了spring，这就是控制反转-->
-    <bean id="UserService" class="com.bupt.ioc.demo1.UserServiceImpl">
-        <!--设置属性，将依赖的属性设置进去，这就是依赖注入-->
-        <property name="name" value="李四"></property>
-    </bean>
+    <!--<bean id="UserService" class="com.bupt.ioc.demo1.UserServiceImpl">-->
+        <!--&lt;!&ndash;设置属性，将依赖的属性设置进去，这就是依赖注入&ndash;&gt;-->
+        <!--<property name="name" value="李四"></property>-->
+    <!--</bean>-->
 
-    <!--Bean的实例化的三种方式============================-->
-    <!--第一种：无参构造器的方式-->
-    <bean id="Bean1" class="com.bupt.ioc.demo2.Bean1"/>
-    <!--第二种：静态工厂的方式-->
-    <bean id="Bean2" class="com.bupt.ioc.demo2.Bean2Factory" factory-method="createBean2"/>
-    <!--第三种：实例工厂的方式-->
-    <bean id="Bean3Factory" class="com.bupt.ioc.demo2.Bean3Factory"/>
-    <bean id="Bean3" factory-bean="Bean3Factory" factory-method="createBean3"/>
+    <!--&lt;!&ndash;Bean的实例化的三种方式============================&ndash;&gt;-->
+    <!--&lt;!&ndash;第一种：无参构造器的方式&ndash;&gt;-->
+    <!--<bean id="Bean1" class="com.bupt.ioc.demo2.Bean1"/>-->
+    <!--&lt;!&ndash;第二种：静态工厂的方式&ndash;&gt;-->
+    <!--<bean id="Bean2" class="com.bupt.ioc.demo2.Bean2Factory" factory-method="createBean2"/>-->
+    <!--&lt;!&ndash;第三种：实例工厂的方式&ndash;&gt;-->
+    <!--<bean id="Bean3Factory" class="com.bupt.ioc.demo2.Bean3Factory"/>-->
+    <!--<bean id="Bean3" factory-bean="Bean3Factory" factory-method="createBean3"/>-->
 
-    Bean的作用范围=====================================
-    <bean id="Person" class="com.bupt.ioc.demo3.Person"/>
+    <!--&lt;!&ndash;Bean的作用范围=====================================&ndash;&gt;-->
+    <!--<bean id="Person" class="com.bupt.ioc.demo3.Person"/>-->
     <!--<bean id="Person" class="com.bupt.ioc.demo3.Person" scope="prototype"/>-->
 
-    <!--<bean id="man" class="com.bupt.ioc.demo3.Man" init-method="setup" destroy-method="teardown">-->
-        <!--<property name="name" value="李四"/>-->
-    <!--</bean>-->
+    <bean id="man" class="com.bupt.ioc.demo3.Man" init-method="setup" destroy-method="teardown">
+        <property name="name" value="李四"/>
+    </bean>
     <!--不需要设置id（设置id的目的是我们自己调用），因为只要存在实现BeanPostProcessor 类的方法，创建所有的Bean都会执行其中的那两个方法。是spring调用的。-->
     <bean class="com.bupt.ioc.demo3.MyBeanPostProcessor"/>
 </beans>

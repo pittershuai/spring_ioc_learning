@@ -19,4 +19,17 @@ public class SpringDemo3 {
         System.out.println(person1);
         System.out.println(person2);
     }
+
+    /**
+     * Bean生命周期测试
+     */
+    @Test
+    public void demo2(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Man man = (Man) applicationContext.getBean("man");
+
+        man.run();
+
+        applicationContext.close();
+    }
 }
