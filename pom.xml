@@ -45,6 +45,12 @@
       <artifactId>spring-expression</artifactId>
       <version>4.2.5.RELEASE</version>
     </dependency>
+    <!--想使用注解方式要映入spring-aop-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>4.2.5.RELEASE</version>
+    </dependency>
     <dependency>
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
