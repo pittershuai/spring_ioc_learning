@@ -39,5 +39,10 @@
     <bean id="person" class="com.bupt.ioc.demo4.Person">
         <property name="name" value="张三"/>
         <property name="age" value="32"/>
+        <!--通过ref对对象属性注入-->
+        <property name="cat" ref="cat"/>
+    </bean>
+    <bean id="cat" class="com.bupt.ioc.demo4.Cat">
+        <property name="name" value="kitty"/>
     </bean>
 </beans>
