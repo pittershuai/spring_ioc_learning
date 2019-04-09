@@ -1,7 +1,9 @@
 package com.bupt.aspectJ.demo1;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 
@@ -20,5 +22,13 @@ public class MyAspectAnno {
 //    后置通知可以得到切入点的返回值
     public void  after(Object result){
         System.out.println("后置通知==================" + result);
+    }
+
+    @Around(value = "execution(* com.bupt.aspectJ.demo1.ProductDao.delete(..))")
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("环绕通知前==================");
+        Object obj = joinPoint.proceed();// 执行目标方法,若不写这句delete()是不会被执行的
+        System.out.println("环绕通知后==================");
+        return obj;
     }
 }
