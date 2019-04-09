@@ -1,4 +1,5 @@
 
+import com.bupt.jdbcTemplet.entity.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,10 +7,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -83,5 +87,30 @@ public class TestJDBCTemplet {
         String sql = "select * from student";
         List<Map<String,Object>> stus = jdbcTemplate.queryForList(sql);
         System.out.println(stus);
+    }
+
+    @Test
+    public void testQueryEntity1(){
+        String sql = "select * from student where id = ?";
+        Student stu = jdbcTemplate.queryForObject(sql, new StudentRowMapper(), 1);
+        System.out.println(stu);
+    }
+
+    @Test
+    public void testQueryEntity2(){
+        String sql = "select * from student";
+        List<Student> stus = jdbcTemplate.query(sql,new StudentRowMapper());
+        System.out.println(stus);
+    }
+
+    private class StudentRowMapper implements RowMapper<Student> {
+        public Student mapRow(ResultSet resultSet, int i) throws SQLException {
+            Student stu = new Student();
+            stu.setId(resultSet.getInt("id"));
+            stu.setName(resultSet.getString("name"));
+            stu.setSex(resultSet.getString("sex"));
+            stu.setBorn(resultSet.getDate("born"));
+            return stu;
+        }
     }
 }
