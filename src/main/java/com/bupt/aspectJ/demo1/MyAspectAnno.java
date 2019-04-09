@@ -34,4 +34,10 @@ public class MyAspectAnno {
     public void afterThrowing(Throwable e){
         System.out.println("异常抛出通知=============="+e.getMessage());
     }
+
+    @After(value="execution(* com.bupt.aspectJ.demo1.ProductDao.findAll(..))")
+    //无论是否抛异常都会执行
+    public void after2(){
+        System.out.println("最终通知==================");
+    }
 }
