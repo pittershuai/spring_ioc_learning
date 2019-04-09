@@ -17,6 +17,7 @@
         <property name="proxyInterfaces" value="com.bupt.aop.demo3.StudentDao"/>
         <!--采用拦截的名称-->
         <property name="interceptorNames" value="myBeforeAdvice"/>
-        <property name="optimize" value="true"></property>
+        <!--强行使用cglib方式，默认是JDK方式的-->
+        <!--<property name="optimize" value="true"></property>-->
     </bean>
 </beans>
