@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:applicationContext3.xml")
+@ContextConfiguration("classpath:applicationContext-aop3.xml")
 public class SpringDemo5 {
 
     @Resource(name="studentDao")
