@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    <!--注意上面要加上context的命名空间-->
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--&lt;!&ndash;开启注解扫描=======================&ndash;&gt;-->
-        <!--<context:component-scan base-package="com.bupt.ioc_annotation"/>-->
+    <!--配置目标类=======================-->
+    <bean id="studentDao" class="com.bupt.aop.demo3.StudentDaoImpl"/>
 
-    <context:annotation-config/>
+    <!--前置通知类型=====================-->
+    <bean id="myBeforeAdvice" class="com.bupt.aop.demo3.MyBeforeAdvice"/>
 
-    <bean id="productDao" class="com.bupt.ioc_annotation.demo3.ProductDao"/>
-    <bean id="categoryDao" class="com.bupt.ioc_annotation.demo3.CategoryDao"/>
-    <bean id="productService" class="com.bupt.ioc_annotation.demo3.ProductService"/>
+    <!--Spring的AOP 产生代理对象-->
+    <bean id="studentDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--配置目标类-->
+        <property name="target" ref="studentDao"/>
+        <!--实现的接口-->
+        <property name="proxyInterfaces" value="com.bupt.aop.demo3.StudentDao"/>
+        <!--采用拦截的名称-->
+        <property name="interceptorNames" value="myBeforeAdvice"/>
+        <property name="optimize" value="true"></property>
+    </bean>
 </beans>
