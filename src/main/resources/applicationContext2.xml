@@ -1,31 +1,31 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
-       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-       <!--xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">-->
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--&lt;!&ndash;配置目标类=======================&ndash;&gt;-->
-    <!--<bean id="customerDao" class="com.bupt.aop.demo4.CustomerDao"/>-->
+    <!--配置目标类=======================-->
+    <bean id="customerDao" class="com.bupt.aop.demo4.CustomerDao"/>
 
-    <!--&lt;!&ndash;前置通知类型=====================&ndash;&gt;-->
-    <!--<bean id="myAroundAdvice" class="com.bupt.aop.demo4.MyAroundAdvice"/>-->
+    <!--前置通知类型=====================-->
+    <bean id="myAroundAdvice" class="com.bupt.aop.demo4.MyAroundAdvice"/>
 
-    <!--&lt;!&ndash;一般的切面是使用通知作为切面的，因为要对目标类的某个方法进行增强就需要配置一个带有切入点的切面&ndash;&gt;-->
-    <!--<bean id="myAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">-->
-        <!--&lt;!&ndash;pattern中配置正则表达式：.任意字符  *任意次数 &ndash;&gt;-->
-        <!--&lt;!&ndash;<property name="pattern" value=".*save.*"/>&ndash;&gt;-->
-        <!--<property name="patterns" value=".*save.*,.*delete.*"/>-->
-        <!--<property name="advice" ref="myAroundAdvice"/>-->
-    <!--</bean>-->
+    <!--一般的切面是使用通知作为切面的，因为要对目标类的某个方法进行增强就需要配置一个带有切入点的切面-->
+    <bean id="myAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <!--pattern中配置正则表达式：.任意字符  *任意次数 -->
+        <!--<property name="pattern" value=".*save.*"/>-->
+        <property name="patterns" value=".*save.*,.*delete.*"/>
+        <property name="advice" ref="myAroundAdvice"/>
+    </bean>
 
-    <!--&lt;!&ndash;Spring的AOP 产生代理对象&ndash;&gt;-->
-    <!--<bean id="customerDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">-->
-        <!--&lt;!&ndash;配置目标类&ndash;&gt;-->
-        <!--<property name="target" ref="customerDao"/>-->
-        <!--&lt;!&ndash;实现的类&ndash;&gt;-->
-        <!--<property name="proxyTargetClass" value="true"/>-->
-        <!--&lt;!&ndash;采用拦截的名称&ndash;&gt;-->
-        <!--<property name="interceptorNames" value="myAdvisor"/>-->
-        <!--&lt;!&ndash;强行使用cglib方式，默认是JDK方式的&ndash;&gt;-->
-        <!--&lt;!&ndash;<property name="optimize" value="true"></property>&ndash;&gt;-->
-    <!--</bean>-->
-<!--</beans>-->
+    <!--Spring的AOP 产生代理对象-->
+    <bean id="customerDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--配置目标类-->
+        <property name="target" ref="customerDao"/>
+        <!--实现的类-->
+        <property name="proxyTargetClass" value="true"/>
+        <!--采用拦截的名称-->
+        <property name="interceptorNames" value="myAdvisor"/>
+        <!--强行使用cglib方式，默认是JDK方式的-->
+        <!--<property name="optimize" value="true"></property>-->
+    </bean>
+</beans>
