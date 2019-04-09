@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext-jdbcTemplet.xml")
@@ -54,5 +55,33 @@ public class TestJDBCTemplet {
         list.add(new Object[]{1,1001});
         list.add(new Object[]{2,1003});
         jdbcTemplate.batchUpdate(sql,list);
+    }
+
+    @Test
+    public void testQuerySimple1(){
+        String sql = "select count(*) from student";
+        int count = jdbcTemplate.queryForObject(sql,Integer.class);
+        System.out.println(count);
+    }
+
+    @Test
+    public void testQuerySimple2(){
+        String sql = "select name from student where sex=?";
+        List<String> names = jdbcTemplate.queryForList(sql,String.class,"女");
+        System.out.println(names);
+    }
+
+    @Test
+    public void testQueryMap1(){
+        String sql = "select * from student where id = ?";
+        Map<String,Object> stu = jdbcTemplate.queryForMap(sql,1);
+        System.out.println(stu);
+    }
+
+    @Test
+    public void testQueryMap2(){
+        String sql = "select * from student";
+        List<Map<String,Object>> stus = jdbcTemplate.queryForList(sql);
+        System.out.println(stus);
     }
 }
