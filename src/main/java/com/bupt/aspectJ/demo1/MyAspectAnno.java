@@ -2,10 +2,8 @@ package com.bupt.aspectJ.demo1;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
+import org.junit.Test;
 
 @Aspect
 public class MyAspectAnno {
@@ -30,5 +28,10 @@ public class MyAspectAnno {
         Object obj = joinPoint.proceed();// 执行目标方法,若不写这句delete()是不会被执行的
         System.out.println("环绕通知后==================");
         return obj;
+    }
+
+    @AfterThrowing(value = "execution(* com.bupt.aspectJ.demo1.ProductDao.findOne(..))",throwing = "e")
+    public void afterThrowing(Throwable e){
+        System.out.println("异常抛出通知=============="+e.getMessage());
     }
 }
