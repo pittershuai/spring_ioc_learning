@@ -9,7 +9,11 @@ public class Main {
     public static void main(final String[] args) throws Exception {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext-transcation.xml");//, MainBoot.class
         out.println(ctx);
-        FooService fooService= (FooService)ctx.getBean("fooService");
-        out.println( fooService.getFoo("sss"));
+//        FooService fooService= (FooService)ctx.getBean("fooService");
+//        out.println( fooService.getFoo("sss"));
+
+        XbeanService xbeanService = (XbeanService)ctx.getBean("xbeanService");
+        out.println( xbeanService.getXbean(12));
+
     }
 }

@@ -47,8 +47,12 @@
     <!--事务模板 -->
     <!-- 2、注释模式事务：启动使用注解实现声明式事务管理的支持   -->
     <tx:annotation-driven transaction-manager="txManager" />
+
     <!-- 想创建的服务对象：this is the service object that we want to make transactional -->
     <bean id="fooService" class="com.bupt.springTransaction.service.DefaultFooService"/>
+    <bean id="xbeanService" class="com.bupt.springTransaction.service.XbeanServiceImpl"/>
+
+
     <!-- 1、通过事务通知的模式实现事务
     事务通知：the transactional advice (what 'happens'; see the <aop:advisor/> bean below) -->
     <tx:advice id="txAdvice" transaction-manager="txManager">
